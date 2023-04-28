@@ -2,13 +2,37 @@
 #!/bin/bash
 #Creates the file /var/run/myscript.pid containing its PID
 
-echo "$$" > /var/run/myscript.pid || { echo "Failed to create PID file" >&2; exit 1; }
-trap 'echo "Y U no love me?!"' SIGINT
-trap 'echo "I hate the kill command"' SIGTERM
-trap 'rm /var/run/myscript.pid; exit' SIGQUIT SIGTERM
+echo "$$" > /var/run/myscript.pid || {
+	echo "Error: Could not create PID file" >&2
+	exit 1
+}
 
+
+sigterm_handler() {
+	echo "I hate the kill command" >&2
+	rm /var/run/myscript.pid
+	exit 1
+}
+
+sigint_handler() {
+	echo "Y U no love me?!" >&2
+}
+
+sigquit_handler() {
+	rm /var/run/myscript.pid
+	exit 0
+}
+
+trap 'sigterm_handler' SIGTERM
+trap 'sigint_handler' SIGINT
+trap 'sigquit_handler' SIGQUIT
+
+# Run the infinite loop
 while true; do
-  echo "To infinity and beyond"
-  sleep 1
+	echo "To infinity and beyond"
+	sleep 1 || {
+		echo "Error: Sleep command failed" >&2
+		exit 1
+	}
 done
 
