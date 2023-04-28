@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# display 10 itertion
+# display "best school" except 8th and 4th line
+# display "bad luck" in   the 4th iteration
+# "good luck" in the 8th  iterations
+
+num=0
+while [ $num -lt 10 ]
+do
+  if [ $num -eq 3 ]
+  then
+    echo "bad luck"
+  elif [ $num -eq 7 ]
+  then
+    echo "good luck"
+  else
+    echo "Best School"
+  fi
+  (( num++ ))
+done
