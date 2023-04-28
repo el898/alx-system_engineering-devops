@@ -3,7 +3,7 @@
 #displays "Hi" on the 9th loop
 
 num=0
-while [ $num -le 10 ]
+while [ $num -lt 10 ]
 do
   if [ $num -eq 9 ]
   then
