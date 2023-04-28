@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # displys The content of the current directory In a list format
 list=$(ls)
-for i in $lst; do
+for i in $list; do
   echo "$i" | cut -d '-' -f2
 done
