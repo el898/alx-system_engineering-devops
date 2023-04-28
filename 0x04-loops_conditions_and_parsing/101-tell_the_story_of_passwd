@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#Write a Bash script that displays the content of the file /etc/passwd,
+#using the while loop + IFS
+name="/etc/passwd"
+i=0
+lines=0
+IFS=':'
+if test -f $name; then
+  lines="$(wc -l < $name)"
+  content=('username' 'password' 'user_id' 'group_id' 'user_id_info' 'home_dir' 'command')
+  while [[ $i -lt $lines ]]; do
+    i="$((i + 1))"
+    read -r -a content < <(tail -n 1 <(head -n $i < $name))
+    echo "The user ${content[0]} is part of the ${content[3]} gang, lives in ${content[5]} and \
+rides ${content[6]}. ${content[2]}'s place is protected by the passcode ${content[1]}, more \
+info about the user here: ${content[4]}"
+  done
+fi
