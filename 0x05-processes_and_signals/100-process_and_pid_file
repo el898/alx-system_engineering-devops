@@ -2,6 +2,8 @@
 #!/bin/bash
 #Creates the file /var/run/myscript.pid containing its PID
 
+set -x
+
 echo "$$" > /var/run/myscript.pid || {
 	echo "Error: Could not create PID file" >&2
 	exit 1
