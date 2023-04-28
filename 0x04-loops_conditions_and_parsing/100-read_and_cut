@@ -12,6 +12,6 @@ if test -f $name; then
   while [[ $i -lt $lines ]]; do
     i="$((i + 1))"
     read -r -a content < <(tail -n 1 <(head -n $i < $name))
-    echo "$content[0]}:${content[2]}:${content[5]}"
+    echo "${content[0]}:${content[2]}:${content[5]}"
   done
 fi
