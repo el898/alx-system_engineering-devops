@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#  create a new process
+#create a new process.
 
 if [[ "$#" == "1" ]]; then
   if [[ "$1" == "start" ]]; then
@@ -13,9 +13,11 @@ if [[ "$#" == "1" ]]; then
     rm /var/run/my_process.pid
     echo "manage_my_process stopped"
   elif [[ "$1" == "restart" ]]; then
+    # stop program
     if test -f "/var/run/my_process.pid"; then
       kill "$(cat /var/run/my_process.pid)"
     fi
+    # start program
     ./manage_my_process &
     echo "$!" > /var/run/my_process.pid
     echo "manage_my_process restarted"
