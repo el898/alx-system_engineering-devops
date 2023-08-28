@@ -1,4 +1,4 @@
-# ssh config file
+# ssh configuration file
 Host *
       PasswordAuthentication no
       IdentifyFile ~/.ssh/school
